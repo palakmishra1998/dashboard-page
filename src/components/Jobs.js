@@ -1,25 +1,29 @@
-import { Card } from 'react-bootstrap';
+import React from 'react';
 import '../App.css';
-import { Gear, HandThumbsUp, Hourglass,  X,} from 'react-bootstrap-icons';
-// import * as Icons from 'react-bootstrap-icons';
+import { FaCaretDown } from 'react-icons/fa';
 
-const Jobs =({name, title}) => {
+
+
+const Jobs = ({ title, jobData }) => {
     return (
-        <Card>
-            <Card.Body>
-                <Card.Title>{title}</Card.Title>
-                <Card.Title>{name}</Card.Title>
-                <Card.Text>
-                    <div>
-                        <Gear /> - Pending
-                        <Hourglass /> - Waiting
-                        <HandThumbsUp /> - Completed
-                        <X /> - Failed
+        <div className="jobs-container dash-card">
+
+            <div className="header">
+                <h3 className='title'>{title}</h3>
+                <div className="week">This week <FaCaretDown /></div>
+            </div>
+
+            <div className="job-cards">
+                {jobData.map((job, index) => (
+                    <div key={index} className="job-card">
+                        <div className="icon">{job.icon}</div>
+                        <div className="label">{job.label}</div>
+                        <div className="count">{job.count}</div>
                     </div>
-                </Card.Text>
-            </Card.Body>
-        </Card>
-    )
-}
+                ))}
+            </div>
+        </div>
+    );
+};
 
 export default Jobs;
